@@ -1,0 +1,15 @@
+data:
+  mysql: true
+    user: "root"
+    pass: "somepass"
+    database: "tickets"
+    host: "127.0.0.1"
+    port: 3306
+    table: "ticket"
+  sqlite: false
+  h2: false
+bungeecord: true
+  server-key: 'Some-Server-Name'
+language:
+  some-string: hiya
+  some-more-strings: hiya2
