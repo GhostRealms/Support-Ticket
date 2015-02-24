@@ -36,6 +36,14 @@ public class DataManager {
         return connection;
     }
     
+    public void write(String sql) {
+        
+    }
+    
+    public void write(String sql, int retry) {
+
+    }
+    
     private Connection getSQLConnection() {
         String url = "jdbc:mysql://" + instance.sql_host + ":" + instance.sql_port + "/" + instance.sql_database;
         try {
