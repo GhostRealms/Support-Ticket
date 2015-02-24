@@ -10,14 +10,61 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class SupportTicket extends JavaPlugin {
     
+    protected boolean networkMode = false;
+    protected String serverKey = "Local";
+    
+    protected boolean sql_mode = false;
+    protected String sql_host = "127.0.0.1";
+    protected String sql_user = "root";
+    protected String sql_password;
+    protected int sql_port = 3306;
+    protected String sql_database = "tickets";
+    protected String sql_table;
+    
+    protected boolean h2_mode = false;
+    protected boolean sqlite_mode = false;
+    
+    private DataManager dataManager;
+
     @Override
     public void onEnable() {
         
+        //Configuration
+        this.saveDefaultConfig();
+        sql_mode = this.getConfig().getBoolean("data.mysql");
+        if(sql_mode) {
+            sql_host = this.getConfig().getString("data.mysql.host");
+            sql_user = this.getConfig().getString("data.mysql.user");
+            sql_password = this.getConfig().getString("data.mysql.pass");
+            sql_port = this.getConfig().getInt("data.mysql.port");
+            sql_database = this.getConfig().getString("data.mysql.database");
+            sql_table = this.getConfig().getString("data.mysql.table");
+            dataManager = new DataManager(DataManagerContext.MYSQL, this);
+        } else if (h2_mode) {
+            disable("h2 is currently disabled");
+        } else if(sqlite_mode) {
+            disable("sqlite is currently disabled");
+        }
     }
     
     @Override
     public void onDisable() {
 
+    }
+
+    /**
+     * Disable the Plugin, can be used by external classes rather than disabling using a constructed object 
+     * @deprecated use {link #disable(String reason)}
+     */
+    @Deprecated
+    protected void disable() {
+        getLogger().info("Disabled by disable() Please NAG for better messages!");
+        getServer().getPluginManager().disablePlugin(this);
+    }
+    
+    protected void disable(String reason) {
+        getLogger().info("Disabled by disable(): " + reason);
+        getServer().getPluginManager().disablePlugin(this);
     }
     
 }
