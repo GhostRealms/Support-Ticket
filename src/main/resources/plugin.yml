@@ -5,4 +5,4 @@ website: ghostrealms.net
 commands:
   ticket:
     description: Command for handling tickets
-    aliases: []
+    aliases: [modreq, select, comment, done, pending, priority]

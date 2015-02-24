@@ -10,6 +10,9 @@ data:
   h2: false
 bungeecord: true
   server-key: 'Some-Server-Name'
+settings:
+  max-open-tickets: -1
+  sequential-numbering: false
 language:
   some-string: hiya
   some-more-strings: hiya2
