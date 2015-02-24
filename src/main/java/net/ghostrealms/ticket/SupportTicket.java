@@ -47,6 +47,10 @@ public class SupportTicket extends JavaPlugin {
             disable("sqlite is currently disabled");
         }
         
+        //Configuration - BungeeCord specific settings, for teleporting to ticket locations x-server
+        networkMode = this.getConfig().getBoolean("bungeecord");
+        serverKey = this.getConfig().getString("bungeecord.server-key");
+        
         //Create the Ticket Manager, Load tickets into cache. Pass the Data Manager into the constructor
         ticketManager = new TicketManager(dataManager);
     }
