@@ -25,6 +25,7 @@ public class SupportTicket extends JavaPlugin {
     protected boolean sqlite_mode = false;
     
     private DataManager dataManager;
+    private TicketManager ticketManager;
 
     @Override
     public void onEnable() {
@@ -45,11 +46,22 @@ public class SupportTicket extends JavaPlugin {
         } else if(sqlite_mode) {
             disable("sqlite is currently disabled");
         }
+        
+        //Create the Ticket Manager, Load tickets into cache. Pass the Data Manager into the constructor
+        ticketManager = new TicketManager(dataManager);
     }
     
     @Override
     public void onDisable() {
 
+    }
+    
+    public TicketManager getTicketManager() {
+        return ticketManager;
+    }
+    
+    public DataManager getDataManager() {
+        return dataManager;
     }
 
     /**
