@@ -6,4 +6,11 @@ package net.ghostrealms.ticket;
  */
 
 public class TicketManager {
+    
+    private final DataManager manager;
+    
+    public TicketManager(DataManager manager) {
+        this.manager = manager;
+    }
+    
 }
