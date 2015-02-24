@@ -1,0 +1,8 @@
+name: Support-Ticket
+version: ${project.version}
+main: net.ghostrealms.ticket.SupportTicket
+website: ghostrealms.net
+commands:
+  ticket:
+    description: Command for handling tickets
+    aliases: []
