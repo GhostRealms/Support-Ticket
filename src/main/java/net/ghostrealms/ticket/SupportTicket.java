@@ -21,7 +21,6 @@ public class SupportTicket extends JavaPlugin {
     protected String sql_password;
     protected int sql_port = 3306;
     protected String sql_database = "tickets";
-    protected String sql_table;
     
     protected boolean h2_mode = false;
     protected boolean sqlite_mode = false;
@@ -41,7 +40,6 @@ public class SupportTicket extends JavaPlugin {
             sql_password = this.getConfig().getString("data.mysql.pass");
             sql_port = this.getConfig().getInt("data.mysql.port");
             sql_database = this.getConfig().getString("data.mysql.database");
-            sql_table = this.getConfig().getString("data.mysql.table");
             dataManager = new DataManager(DataManagerContext.MYSQL, this);
         } else if (h2_mode) {
             disable("h2 is currently disabled");
