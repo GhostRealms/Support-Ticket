@@ -10,6 +10,8 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class SupportTicket extends JavaPlugin {
     
+    private static SupportTicket instance;
+    
     protected boolean networkMode = false;
     protected String serverKey = "Local";
     
@@ -53,6 +55,9 @@ public class SupportTicket extends JavaPlugin {
         
         //Create the Ticket Manager, Load tickets into cache. Pass the Data Manager into the constructor
         ticketManager = new TicketManager(dataManager);
+        
+        
+        instance = this;
     }
     
     @Override
@@ -81,6 +86,10 @@ public class SupportTicket extends JavaPlugin {
     protected void disable(String reason) {
         getLogger().info("Disabled by disable(): " + reason);
         getServer().getPluginManager().disablePlugin(this);
+    }
+    
+    public static SupportTicket getInstance() {
+        return instance;
     }
     
 }
