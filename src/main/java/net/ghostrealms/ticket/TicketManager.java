@@ -60,6 +60,14 @@ public class TicketManager {
         sessions.put(user, newSession);
     }
     
+    public Ticket getSession(UUID user) {
+        if(getAllSessions().containsKey(user)) {
+            return null; //TODO get the ticket from an ID
+        } else {
+            return null;
+        }
+    }
+    
     
     
     
