@@ -12,6 +12,7 @@ import java.sql.SQLException;
  * Created by River on 2/23/2015.
  * DataManager for the Ticket System * 
  */
+
 public class DataManager {
 
     private Connection connection = null;
