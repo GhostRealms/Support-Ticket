@@ -1,5 +1,9 @@
 package net.ghostrealms.ticket;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -42,6 +46,41 @@ public class DataManager {
     
     public void write(String sql, int retry) {
 
+    }
+
+    /**
+     * Convert a Location object to a store-able string * 
+     * @param location to serialize
+     * @return string value of location
+     */
+    public String serializeLocation(Location location) {
+        String world = location.getWorld().getName();
+        double x = location.getX();
+        double y = location.getY();
+        double z = location.getZ();
+        float yaw = location.getYaw();
+        float pitch = location.getPitch();
+        
+        return world + ":" + x + ":" + y + ":" + z + ":" + yaw + ":" + pitch;
+    }
+
+    /**
+     * Convert serialized string objects back to Bukkit location objects.* 
+     * @param string to convert
+     * @return Bukkit location object
+     */
+    public Location deserializeLocation(String string) {
+        World w;
+        double x, y, z;
+        float yaw, pitch;
+        String[] strings = string.split(":");
+        w = Bukkit.getWorld(strings[0]);
+        x = Double.parseDouble(strings[1]);
+        y = Double.parseDouble(strings[2]);
+        z = Double.parseDouble(strings[3]);
+        yaw = Float.parseFloat(strings[4]);
+        pitch = Float.parseFloat(strings[5]);
+        return new Location(w, x, y, z, yaw, pitch);
     }
     
     private Connection getSQLConnection() {
